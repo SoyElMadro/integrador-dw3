@@ -1,6 +1,6 @@
 # Aprende Programando - DW3
 
-## Desafío Integrador
+## Desafío Integrador: User Manager App
 
 ### Desafio 7:  ✅
 ### Desafio 9:  👷‍♂️
