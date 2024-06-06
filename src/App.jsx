@@ -1,5 +1,10 @@
 import { useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import UserList from "./UserList";
 import UserForm from "./UserForm";
+import UserDetails from "./UserDetails";
+import UserEdit from "./UserEdit";
+import UserDelete from "./UserDelete";
 
 const App = () => {
   const [users, setUsers] = useState([]);
@@ -7,7 +12,7 @@ const App = () => {
   const addUser = async (newUser) => {
     try {
       const response = await fetch(
-        "https://6657819d5c36170526450fee.mockapi.io/users",
+        "https://663bcd41fee6744a6ea2fdd8.mockapi.io/api/users",
         {
           method: "POST",
           headers: {
@@ -28,17 +33,15 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Lista de Usuarios</h1>
-      <UserForm addUser={addUser} />
-      <ul>
-        {users.map((user, index) => (
-          <li key={index}>
-            {user.name} - {user.email}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<UserList />} />
+        <Route path="/users/:id" element={<UserDetails />} />
+        <Route path="/create" element={<UserForm addUser={addUser} />} />
+        <Route path="/edit/:id" element={<UserEdit />} />
+        <Route path="/delete/:id" element={<UserDelete />} />
+      </Routes>
+    </Router>
   );
 };
 export default App;

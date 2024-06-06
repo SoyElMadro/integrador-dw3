@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -28,9 +29,15 @@ const UserList = () => {
         {users.map((user) => (
           <li key={user.id}>
             {user.name} - {user.email}
+            <Link style={{ marginLeft: "10px" }} to={`/edit/${user.id}`}>
+              Editar
+            </Link>
           </li>
         ))}
       </ul>
+      <Link style={{ marginRight: "10px" }} to={`/create`}>
+        Agregar Usuario
+      </Link>
     </div>
   );
 };
